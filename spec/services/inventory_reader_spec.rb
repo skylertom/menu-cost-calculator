@@ -4,10 +4,9 @@ describe InventoryReader do
   before do
     # load measurements
     %w(oz gal ct lb slices cup qt oz volume kil ea).each { |title| Measurement.create!(title: title) }
-    Measurement
   end
 
-  it 'should open the file' do
+  it 'should save inventory items to database' do
     expect(InventoryItem.count).to eq 0
 
     described_class.new('spec/fixtures/sample.xlsx').call

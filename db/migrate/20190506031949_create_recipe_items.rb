@@ -7,6 +7,7 @@ class CreateRecipeItems < ActiveRecord::Migration[5.2]
       t.integer :measurement_id
       t.float :amount, null: false
       t.float :calculated_cost
+      t.integer :recipe_id, null: false
 
       t.timestamps
     end

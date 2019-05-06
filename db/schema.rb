@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_031949) do
     t.integer "measurement_id"
     t.float "amount", null: false
     t.float "calculated_cost"
+    t.integer "recipe_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

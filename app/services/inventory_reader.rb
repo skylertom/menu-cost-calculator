@@ -15,9 +15,7 @@ class InventoryReader < ApplicationService
   def call
 		rows.each do |row|
       increment_counter
-			unless skip_row?(row)
-				records << build_new_record(row) 
-			end
+      records << build_new_record(row) unless skip_row?(row)
       import_records if reached_batch_import_size? || reached_end_of_file?
     end
   end

@@ -3,10 +3,7 @@ class ServiceGenerator < Rails::Generators::Base
 
   def create_app_file
     create_file "app#{general_path}.rb" do
-      "class #{name.camelize}\n < ApplicationService" \
-      "\tdef initialize\n" \
-      "\tend\n" \
-      "\n"
+      "class #{name.camelize} < ApplicationService\n" \
       "\tdef initialize\n" \
       "\tend\n" \
       "end"

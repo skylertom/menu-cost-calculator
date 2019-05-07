@@ -28,6 +28,7 @@ gem 'webpacker'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'activerecord-import', require: false
+gem "administrate"
 gem 'creek'
 gem 'unitwise'
 

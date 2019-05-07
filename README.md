@@ -5,20 +5,37 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+- Ruby version
 
-* System dependencies
+  - 2.3.3
+  - Move to 2.6?
 
-* Configuration
+- System dependencies
 
-* Database creation
+* Options for Measurement conversions
+  - https://github.com/Shopify/measured (has comparison of other libraries)
+  - https://github.com/olbrich/ruby-units
+  - **https://github.com/joshwlewis/unitwise** - currently in use
+* Admin tools
+  - https://github.com/thoughtbot/administrate
+* Excel Reader
+  - https://github.com/pythonicrubyist/creek
+    - https://infinum.co/the-capsized-eight/how-to-efficiently-process-large-excel-files-using-ruby
+  - Alternative: https://github.com/weshatheleopard/rubyXL
+  - Use something with stream abilities for memory/efficiency
+* ActiveRecord
+  - https://github.com/zdennis/activerecord-import - bulk activerecord imports
 
-* Database initialization
+- Configuration
 
-* How to run the test suite
+- Database creation
 
-* Services (job queues, cache servers, search engines, etc.)
+- Database initialization
 
-* Deployment instructions
+- How to run the test suite
 
-* ...
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...

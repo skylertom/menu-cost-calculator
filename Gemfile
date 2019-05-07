@@ -50,6 +50,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'dirty'
   gem 'factory_bot_rails'
   gem 'rspec-rails'
 end

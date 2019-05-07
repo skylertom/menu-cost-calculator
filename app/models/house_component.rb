@@ -1,0 +1,2 @@
+class HouseComponent < Recipe
+end

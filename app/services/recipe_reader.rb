@@ -10,7 +10,7 @@ class RecipeReader < ApplicationService
 		rows.each do |row|
 			increment_counter
 			if menu_row?(row)
-				recipe = Recipe.create(title: row['D'])
+				recipe = MenuItem.create(title: row['D'])
 			elsif recipe_line_item?(row)
 				create_recipe_item(recipe, row)
 			elsif blank_row?(row)
@@ -61,6 +61,7 @@ class RecipeReader < ApplicationService
 		# I is conversion calculation
 		# J is calculated cost
 		recipe.recipe_items.create(
+			input_supplier: row['B'],
 			input_title: row['C'],
 			amount_value: row['G'],
 			amount_unit: row['H']

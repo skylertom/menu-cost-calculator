@@ -1,7 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Figure out how to best store "prepped items"
+
+- Probably want to tie to `Ingredient` at some point
+- Right now it's included in as an `InventoryItem` (both in the databse and in the excel sheets)
 
 Things you may want to cover:
 

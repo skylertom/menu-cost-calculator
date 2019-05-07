@@ -1,5 +1,5 @@
 class RecipeItem < ApplicationRecord
-  ITEM_TYPES = %w(Ingredient )# HouseComponent
+  ITEM_TYPES = %w(InventoryItem Recipe)
   validates :input_title, presence: true
   validates :item_type, inclusion: { in: ITEM_TYPES }, allow_blank: true
   validates :amount_value, presence: true

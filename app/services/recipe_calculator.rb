@@ -21,37 +21,22 @@ class RecipeCalculator < ApplicationService
 	end
 
 	def calculate_recipe_cost(recipe, items)
-		recipe.update(cost_of_goods: items.map(&:calculated_cost).sum)
+		recipe.update(total_cost: items.map(&:total_cost).sum)
 	end
 
 	def update_item_cost(recipe_item)
-		# this exact way the relationship works can change in the future
-		if recipe_item.item.is_a?(Ingredient)
-			# assumes that there is ony one inventory item per ingredient
-			# TODO probably have recipe items directly link to inventory items
-			handle_inventory_item(recipe_item, recipe_item.item.inventory_items.first)
-		else
-			handle_house_component(recipe_item, recipe_item.item)
-		end
-	end
-
-	def handle_inventory_item(recipe_item, inventory_item)
-		if recipe_item.nice_unit.compatible_with?(inventory_item.nice_unit)
+		if recipe_item.nice_unit.compatible_with?(recipe_item.item.nice_unit)
 			calc_compatible_units(recipe_item, recipe_item.nice_unit, 
-				inventory_item.nice_unit, inventory_item.total_cost)
+				recipe_item.item.nice_unit, recipe_item.item.total_cost)
 		else
 			raise NotImplementedError, "Conversion of different types"
 		end
 	end
 
-	def handle_house_component(_recipe_item, _house_component)
-		raise NotImplementedError, 'House Components not implemented yet'
-	end
-
 	# price for all inventory units, not just one unit
 	def calc_compatible_units(recipe_item, nice_recipe_unit, nice_inventory_unit, inventory_price)
 		inventory_unit_price = unit_price(nice_inventory_unit, inventory_price)
-		recipe_item.update(calculated_cost: 
+		recipe_item.update(total_cost: 
 			nice_recipe_unit.convert_to(nice_inventory_unit) * inventory_unit_price)
 	end
 

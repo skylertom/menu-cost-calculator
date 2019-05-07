@@ -7,18 +7,32 @@ describe RecipeCalculator do
     @recipe = create_recipe(ingredients)
   end
 
-  it 'calculates recipe items cost' do
+  # inventory list
+  #   value [1, 2...]
+  #   unit: kg
+  #   total cost [1000, 2000...]
+  # recipe item list
+  #   value [1, 2...]
+  #   unit kg
+  it 'calculates recipe items cost with no conversion' do
     expect(@recipe.recipe_items.pluck(:calculated_cost)).to \
       match_array Array.new(5)
 
     described_class.call(@recipe)
+
+    recipe_item_costs = [1000.0, 1000.0, 1000.0, 1000.0, 1000.0]
+    expect(@recipe.recipe_items.order(:id).pluck(:calculated_cost)).to \
+      match_array recipe_item_costs
+    expect(@recipe.reload.cost_of_goods).to eq recipe_item_costs.sum
   end
+
+  private
 
   def create_inventory(ingredients)
     ingredients.each_with_index do |ingredient, i|
       InventoryItem.create(input_title: "#{ingredient.title} A",
         input_supplier: "Baldor", ingredient_id: ingredient.id,
-        total_cost: i * 100, amount_value: i, amount_unit: 'kg')
+        total_cost: (i+1) * 1000, amount_value: i + 1, amount_unit: 'kg')
     end
   end
 
@@ -30,7 +44,7 @@ describe RecipeCalculator do
     recipe = Recipe.create(title: 'Sample Recipe')
     ingredients.each_with_index do |ingredient, i|
       recipe.recipe_items.create(input_title: "Ingredient #{i}",
-        amount_value: i, amount_unit: 'g',
+        amount_value: 1, amount_unit: 'kg',
         item: ingredient)
     end
     recipe

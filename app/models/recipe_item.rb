@@ -7,4 +7,8 @@ class RecipeItem < ApplicationRecord
 
   belongs_to :recipe
   belongs_to :item, polymorphic: true, optional: true 
+
+  def nice_unit
+    Unitwise(amount_value, amount_unit)
+  end
 end

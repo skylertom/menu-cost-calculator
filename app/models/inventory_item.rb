@@ -7,4 +7,8 @@ class InventoryItem < ApplicationRecord
   validates :input_title, presence: true
   validates :input_supplier, presence: true
   # later can move measurement to an `input_measurement`
+
+  def nice_unit
+    Unitwise(amount_value, amount_unit)
+  end
 end

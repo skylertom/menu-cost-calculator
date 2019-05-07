@@ -33,11 +33,11 @@ class Readers::RecipeReader < ApplicationService
 	end
 
 	def recipe_line_item?(row)
-		row['B'].present? && row['B'] != 'Supplier'
+		row['B'].present? && row['B'].downcase != 'supplier'
 	end
 
 	def blank_row?(row)
-		row['B'] != 'Supplier'
+		row['B'].blank? || row['B'].downcase != 'supplier'
 	end
 
   # Assume content is in the fourth Excel sheet (snacks)

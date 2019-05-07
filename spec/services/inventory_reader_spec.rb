@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe InventoryReader do
   before do
-    # load measurements
-    %w(oz gal ct lb slices cup qt oz volume kil ea).each { |title| Measurement.create!(title: title) }
+    # load measurements - no longer
+    %w(oz gal ct lb slices cup qt oz volume kil ea)
   end
 
   it 'should save inventory items to database' do
@@ -19,9 +19,9 @@ describe InventoryReader do
       item = InventoryItem.order(id: :asc).first
       expect(item.input_supplier).to eq supplier
       expect(item.input_title).to eq title
-      expect(item.measurement.title).to eq measurement
+      expect(item.amount_unit).to eq measurement
+      expect(item.amount_value).to eq amount
       expect(item.total_cost).to eq cost
-      expect(item.amount).to eq amount
     end
 
     last_items_to_test = [
@@ -31,9 +31,9 @@ describe InventoryReader do
       item = InventoryItem.order(id: :desc).first
       expect(item.input_supplier).to eq supplier
       expect(item.input_title).to eq title
-      expect(item.measurement.title).to eq measurement
+      expect(item.amount_unit).to eq measurement
+      expect(item.amount_value).to eq amount
       expect(item.total_cost).to eq cost
-      expect(item.amount).to eq amount
     end
   end
 end

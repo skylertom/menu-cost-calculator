@@ -24,14 +24,6 @@ class RecipeReader < ApplicationService
   attr_reader :file_path
 	attr_accessor :counter
 	
-	def measurements
-		@measurements ||= Hash[Measurement.all.pluck(:title, :id)]
-	end
-
-	def measurement_id(measurement_title)
-		measurements[measurement_title.downcase.strip]
-	end
-
   def book
     @book ||= Creek::Book.new(file_path)
 	end
@@ -70,8 +62,8 @@ class RecipeReader < ApplicationService
 		# J is calculated cost
 		recipe.recipe_items.create(
 			input_title: row['C'],
-			amount: row['G'],
-			measurement_id: measurement_id(row['H'])
+			amount_value: row['G'],
+			amount_unit: row['H']
 		)
 	end
 end

@@ -25,14 +25,6 @@ class InventoryReader < ApplicationService
   attr_reader :file_path, :records
 	attr_accessor :counter
 	
-	def measurements
-		@measurements ||= Hash[Measurement.all.pluck(:title, :id)]
-	end
-
-	def measurement_id(measurement_title)
-		measurements[measurement_title.downcase.strip]
-	end
-
   def book
     @book ||= Creek::Book.new(file_path)
   end
@@ -54,8 +46,8 @@ class InventoryReader < ApplicationService
 		InventoryItem.new(
 			input_title: row['B'],
 			input_supplier: row['A'],
-			measurement_id: measurement_id(row['D']),
-			amount: row['C'],
+			amount_unit: row['D'],
+			amount_value: row['C'],
 			total_cost: row['E']
 		)
   end

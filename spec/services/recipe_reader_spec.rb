@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe RecipeReader do
   before do
-    # load measurements
-    %w(slice ladel tb oz gal ct lb slices cup qt oz volume kil ea).each { |title| Measurement.create!(title: title) }
+    # load measurements - no longer necessary
+    %w(slice ladel tb oz gal ct lb slices cup qt oz volume kil ea)
   end
 
   it 'should save recipe items to database' do
@@ -24,8 +24,8 @@ describe RecipeReader do
     ]
     recipe.recipe_items.order(id: :asc).each_with_index do |item, i|
       expect(item.input_title).to eq data[i][0]
-      expect(item.amount).to eq data[i][1]
-      expect(item.measurement.title).to eq data[i][2]
+      expect(item.amount_value).to eq data[i][1]
+      expect(item.amount_unit).to eq data[i][2]
     end
 
     recipe = Recipe.order(id: :asc).second
@@ -42,8 +42,8 @@ describe RecipeReader do
     ]
     recipe.recipe_items.order(id: :asc).each_with_index do |item, i|
       expect(item.input_title).to eq data[i][0]
-      expect(item.amount).to eq data[i][1]
-      expect(item.measurement.title).to eq data[i][2]
+      expect(item.amount_value).to eq data[i][1]
+      expect(item.amount_unit).to eq data[i][2]
     end
   end
 end

@@ -1,9 +1,8 @@
 class InventoryItem < ApplicationRecord
   belongs_to :ingredient, optional: true
-  belongs_to :measurement
 
-  validates :measurement_id, presence: true
-  validates :amount, presence: true
+  validates :amount_unit, presence: true
+  validates :amount_value, presence: true
   validates :total_cost, presence: true
   validates :input_title, presence: true
   validates :input_supplier, presence: true

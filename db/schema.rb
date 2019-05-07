@@ -25,15 +25,9 @@ ActiveRecord::Schema.define(version: 2019_05_06_031949) do
     t.string "input_title", null: false
     t.string "input_supplier", null: false
     t.integer "ingredient_id"
-    t.integer "measurement_id"
-    t.float "total_cost", null: false
-    t.float "amount", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "measurements", force: :cascade do |t|
-    t.string "title", null: false
+    t.decimal "total_cost", precision: 10, scale: 4, null: false
+    t.decimal "amount_value", precision: 10, scale: 4, null: false
+    t.string "amount_unit", limit: 12, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,18 +36,18 @@ ActiveRecord::Schema.define(version: 2019_05_06_031949) do
     t.string "input_title"
     t.string "item_type"
     t.integer "item_id"
-    t.integer "measurement_id"
-    t.float "amount", null: false
     t.float "calculated_cost"
     t.integer "recipe_id", null: false
+    t.decimal "amount_value", precision: 10, scale: 4, null: false
+    t.string "amount_unit", limit: 12, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title", null: false
-    t.float "cost_of_goods"
-    t.float "menu_price"
+    t.decimal "cost_of_goods", precision: 10, scale: 4
+    t.decimal "menu_price", precision: 10, scale: 4
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

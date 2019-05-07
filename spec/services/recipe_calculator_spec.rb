@@ -26,6 +26,20 @@ describe RecipeCalculator do
     expect(@recipe.reload.cost_of_goods).to eq recipe_item_costs.sum
   end
 
+  it 'calculates recipe items cost with no conversion' do
+    InventoryItem.update_all(amount_value: 1, amount_unit: 'lb')
+    expect(@recipe.recipe_items.pluck(:calculated_cost)).to \
+      match_array Array.new(5)
+
+    described_class.call(@recipe)
+
+    # copied these vals from test, TODO eventually confirm these are correct
+    recipe_item_costs = [2204, 4409, 6613, 8818, 11023]
+    expect(@recipe.recipe_items.order(:id).pluck(:calculated_cost).map(&:floor)).to \
+      match_array recipe_item_costs
+    expect(@recipe.reload.cost_of_goods).to eq @recipe.recipe_items.pluck(:calculated_cost).sum
+  end
+
   private
 
   def create_inventory(ingredients)

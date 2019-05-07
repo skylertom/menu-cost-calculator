@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe InventoryReader do
+describe Readers::InventoryReader do
   before do
     # load measurements - no longer
     %w(oz gal ct lb slices cup qt oz volume kil ea)

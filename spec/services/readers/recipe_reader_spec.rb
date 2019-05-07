@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RecipeReader do
+describe Readers::RecipeReader do
   before do
     # load measurements - no longer necessary
     %w(slice ladel tb oz gal ct lb slices cup qt oz volume kil ea)

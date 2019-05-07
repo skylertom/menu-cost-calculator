@@ -2,7 +2,7 @@ require 'activerecord-import/base'
 # load the appropriate database adapter (postgresql, mysql2, sqlite3, etc)
 require 'activerecord-import/active_record/adapters/postgresql_adapter'
 
-class InventoryReader < ApplicationService
+class Readers::InventoryReader < ApplicationService
   def initialize(file_path)
 		@file_path = file_path
     @records = []

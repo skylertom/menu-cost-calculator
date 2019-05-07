@@ -1,4 +1,4 @@
-class RecipeReader < ApplicationService
+class Readers::RecipeReader < ApplicationService
   def initialize(file_path)
 		@file_path = file_path
 		@counter = 0

@@ -49,6 +49,7 @@ blocks:
           - sem-service start postgres
           - sem-version ruby 2.3.3
           - gem install bundler
+          - bundle install
           - bundle exec rake db:setup
       env_vars:
         # do we need test-secrets anynmore with this?
@@ -72,5 +73,6 @@ blocks:
             - source /home/semaphore/.bashrc # set current yarn version
             - yarn
             - gem install bundler
+            - bundle install
             - bundle exec rails webpacker:compile
             - bundle exec rspec

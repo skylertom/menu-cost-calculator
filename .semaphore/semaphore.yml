@@ -25,7 +25,7 @@ blocks:
             - cache restore gems-$SEMAPHORE_GIT_BRANCH-$(checksum Gemfile.lock),gems-$SEMAPHORE_GIT_BRANCH-,gems-master-
             # Set Ruby version:
             - sem-version ruby 2.3.3
-            - gem install bundler 2.0.1
+            - gem install bundler
             - bundle install --jobs=4 --retry=3 --path vendor/bundle
             # Store the latest version of dependencies in cache,
             # to be used in next blocks and future workflows:

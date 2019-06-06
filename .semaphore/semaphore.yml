@@ -48,6 +48,7 @@ blocks:
           # See https://docs.semaphoreci.com/article/54-toolbox-reference#sem-service
           - sem-service start postgres
           - sem-version ruby 2.3.3
+          - gem install bundler
           - bundle exec rake db:setup
       env_vars:
         # do we need test-secrets anynmore with this?
@@ -70,5 +71,6 @@ blocks:
             - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
             - source /home/semaphore/.bashrc # set current yarn version
             - yarn
+            - gem install bundler
             - bundle exec rails webpacker:compile
             - bundle exec rspec
